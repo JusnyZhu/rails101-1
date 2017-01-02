@@ -18,6 +18,27 @@ def create
   else
     render :new
   end
+
+def edit
+  @group = Group.find(params[:id])
+  @post = Post.new 
+end
+
+  def update
+    @group = Group.find(params[:id])
+
+    @post.update(post_params)
+
+    redirect_to groups_path, notice: "Update Success"
+
+  end
+
+  def destroy
+    @group.destroy
+    flash[:alert] = "Group deleted"
+    redirect_to groups_path
+  end
+
 end
 
 private
